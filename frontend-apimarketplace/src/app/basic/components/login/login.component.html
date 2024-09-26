@@ -23,16 +23,16 @@
     <main>
         <div class="login-container">
             <h1>Entrar</h1>
-            <form>
-                <div class="group">      
-                    <input type="text" id="username" name="username" required>
+            <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+                <div class="group">
+                    <input type="text" formControlName="email" id="email" name="email" required>
                     <span class="highlight"></span>
                     <span class="bar"></span>
-                    <label for="username">Email</label>
+                    <label for="email">Email</label>
                   </div>
-                    
-                  <div class="group">      
-                    <input type="password" id="password" name="password" required>
+
+                  <div class="group">
+                    <input type="password"  formControlName="password" id="password" name="password" required>
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label>Senha</label>
