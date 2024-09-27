@@ -32,8 +32,7 @@ export class LoginComponent {
     .subscribe(res => {
       console.log(res);
       if (UserStorageService.isConsumerLoggedIn) {
-        alert("Sendo redirecionado para o dashboard do consumidor!")
-      //  this.router.navigateByUrl("consumidor/dashboard")
+        this.router.navigateByUrl("consumidor/home")
       }
     }, error => {
       alert("Dados incorretos!");
