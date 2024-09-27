@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
+import { UserStorageService } from '../../services/storage/user-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -30,6 +31,10 @@ export class LoginComponent {
     this.authService.login(this.validateForm.get(['email'])!.value, this.validateForm.get(['password'])!.value)
     .subscribe(res => {
       console.log(res);
+      if (UserStorageService.isConsumerLoggedIn) {
+        alert("Sendo redirecionado para o dashboard do consumidor!")
+      //  this.router.navigateByUrl("consumidor/dashboard")
+      }
     }, error => {
       alert("Dados incorretos!");
     })
