@@ -12,18 +12,32 @@ html, body {
     color: #fff;
 }
 
-/* Navbar */
-.nav-bar {
+
+/* Ícones */
+.nav-icons {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    background-color: rgba(12, 22, 27, 0.95); /* Cor de fundo com transparência */
-    backdrop-filter: blur(10px); /* Adiciona blur ao fundo */
-    padding: 10px 20px;
-    position: fixed; /* Fixa no topo da tela */
-    top: 0;
-    width: 100%;
-    z-index: 1000; /* Garante que a nav-bar fique acima de outros elementos */
+    gap: 15px;
+    margin-left: auto; /* Empurra os ícones para a direita */
+}
+
+.nav-icons svg {
+    cursor: pointer;
+    color: #fff;
+}
+
+.nav-icons svg:hover {
+    color: #ccc;
+}
+
+/* Imagem do usuário */
+.user-profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid #fff;
 }
 
 .nav-bar img {
@@ -77,11 +91,11 @@ html, body {
     margin-left: 0; /* Remove o espaçamento do primeiro item */
 }
 
-.nav-botoes {
-    margin-left: auto; /* Empurra nav-botoes para o lado direito */
+.nav-buttons {
+    margin-left: auto; /* Empurra nav-buttons para o lado direito */
 }
 
-.nav-botoes button {
+.nav-buttons button {
     background-color: #03d3fc;
     border: none;
     padding: 8px 16px;
@@ -93,8 +107,8 @@ html, body {
     font-weight: bold;
 }
 
-.nav-botoes button:hover {
-    background-color: #03b3fc;
+.nav-buttons button:hover {
+    background-color: #0056b3;
 }
 
 /* Seção Hero*/
@@ -242,6 +256,8 @@ html, body {
     color: #fff; /* Texto branco */
     box-sizing: border-box;
     border: 1px solid rgb(80, 80, 80);
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .api-cards-container {
@@ -264,7 +280,7 @@ html, body {
     margin-right: 8px;
 }
 
-.api-card .categoria-api {
+.api-card .category-api {
     font-size: 12px;
     color: #000;
     background-color: rgb(220, 220, 220);
@@ -277,20 +293,20 @@ html, body {
     font-weight: bold;
 }
 
-.api-card .descriçao {
+.api-card .description {
     margin: 8px 0;
     font-size: 14px;
-    color: #555;
+    color: #888;
 }
 
-.api-card .autor {
+.api-card .author {
     display: flex;
     align-items: center;
     font-size: 12px;
     color: #888;
 }
 
-.api-card .autor img {
+.api-card .author img {
     width: 24px;
     height: 24px;
     margin-right: 4px;
@@ -307,8 +323,8 @@ html, body {
     margin-right: 10px;
 }
 
-.categoria {
-    background-color: #3a3a3a; /* Fundo da categoria */
+.category {
+    background-color: #3a3a3a; /* Fundo da category */
     padding: 3px 8px;
     border-radius: 5px;
     font-size: 12px;
@@ -320,37 +336,18 @@ html, body {
     font-weight: bold;
 }
 
-.descriçao {
+.description {
     margin: 10px 0;
     font-size: 14px;
     color: #aaa;
 }
 
-.autor {
+.author {
     display: flex;
     align-items: center;
 }
 
-.autor img {
+.author img {
     border-radius: 50%;
     margin-right: 10px;
-}
-
-/* Footer */
-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background-color: #080E12;
-}
-
-footer a {
-    text-align: center;
-    color: #fff;
-    text-decoration: none;
-    align-items: center;
-    justify-content: center;
-    display: inline-flex;
-    margin: 0 auto; /* Alinha ao meio */
 }

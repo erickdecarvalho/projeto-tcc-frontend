@@ -1,10 +1,19 @@
-/* Estilos para o header */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #272727;
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    min-height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #080E12;
+    color: #fff;
+}
+
+main {
+    margin-top: 6%;
 }
 
 /* Navbar */
@@ -20,6 +29,7 @@ nav {
     width: 100%;
     z-index: 1000; /* Garante que a nav-bar fique acima de outros elementos */
 }
+
 .nav-bar img {
     height: 55px;
 }
@@ -117,22 +127,113 @@ nav {
     background-color: #0056b3;
 }
 
-/*                       ///////////////////////////                         */
-/* Footer */
-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+/* Sidebar de Filtros */
+.filter-sidebar {
+    width: 20%;
     padding: 20px;
-    background-color: #080E12;
+    min-height: 100vh;
 }
 
-footer a {
-    text-align: center;
+.filter-sidebar h3 {
+    margin-bottom: 20px;
+}
+
+.filter-options .form-check {
+    margin-bottom: 10px;
+}
+
+/* Seção de APIs */
+.api-list-section {
+    width: 80%;
+    padding: 20px;
+    border: 1px solid #2a2a2a;
+    border-radius: 15px;
+}
+
+.api-list-section h2 {
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.search-bar {
+    margin: 0 10px;
+    margin-bottom: 20px;
+    input {
+        background-color: #2a2a2a;
+        color: #fff;
+        border: 1px solid #444;
+        padding: 8px;
+        border-radius: 4px;
+    }
+}
+
+.search-bar input::placeholder {
+    color: #888;
+}
+
+/* Cards */
+.api-card {
+    flex: 1 1 calc(20% - 16px);
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    padding: 15px;
+    width: 300px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     color: #fff;
+    border: 1px solid rgb(80, 80, 80);
+    cursor: pointer;
     text-decoration: none;
+}
+
+.api-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.api-card .header {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    display: inline-flex;
-    margin: 0 auto; /* Alinha ao meio */
+    margin-bottom: 8px;
+}
+
+.api-card .icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+}
+
+.api-card .category-api {
+    font-size: 12px;
+    color: #000;
+    background-color: rgb(220, 220, 220);
+    border-radius: 4px;
+    padding: 2px 5px;
+}
+
+.api-card .title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.api-card .description {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #888;
+}
+
+.api-card .author {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: #fff;
+}
+
+.api-card .author img {
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
 }

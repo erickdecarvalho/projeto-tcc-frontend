@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import 'bootstrap';
+import { UserStorageService } from '../../services/storage/user-storage.service';
+import { Router } from '@angular/router';
 
 declare var bootstrap: any;
 
@@ -10,14 +12,21 @@ declare var bootstrap: any;
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
-  categorias: any[] = [];
-  dadosApi: any[] = [];
-  apisFiltradas: any[] = []; // Para armazenar as APIs filtradas
+  categories: any[] = [];
+  apiData: any[] = [];
+  filteredApis: any[] = []; // Para armazenar as APIs filtradas
 
-  constructor(private http: HttpClient) {}
+  usuarioLogado = false;
+  isConsumerLoggedIn: boolean = false;
+
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
-    this.carregarCategorias();
+    console.log(this.isConsumerLoggedIn);
+    this.loadCategories();
+    this.router.events.subscribe(event => {
+      this.isConsumerLoggedIn = UserStorageService.isConsumerLoggedIn();
+    })
   }
 
   ngAfterViewInit(): void {
@@ -30,37 +39,37 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   }
 
-  carregarCategorias(): void {
+  loadCategories(): void {
     this.http.get<any>('./assets/db.json')
       .subscribe(
         (data) => {
-          this.categorias = data.categories;
-          this.dadosApi = data.apiData;
-          this.apisFiltradas = this.dadosApi; // Exibir todas as APIs inicialmente
+          this.categories = data.categories;
+          this.apiData = data.apiData;
+          this.filteredApis = this.apiData; // Exibir todas as APIs inicialmente
         },
         (error) => {
-          console.error('Erro ao carregar categorias', error);
+          console.error('Error loading categories', error);
         }
       );
   }
 
   onAbaClick(index: number): void {
-    const categoria = this.categorias[index];
+    const category = this.categories[index];
 
-    // Alterna a categoria ativa
-    categoria.ativa = !categoria.ativa;
+    // Alterna a category ativa
+    category.ativa = !category.ativa;
 
-    // Filtra as APIs com base na categoria ativa
-    if (this.categorias.some(c => c.ativa)) {
-      const categoriaAtiva = this.categorias.filter(c => c.ativa).map(c => c.id);
-      this.apisFiltradas = this.dadosApi.filter(api => categoriaAtiva.includes(api.categoryId));
+    // Filtra as APIs com base na category ativa
+    if (this.categories.some(c => c.ativa)) {
+      const activeCategory = this.categories.filter(c => c.ativa).map(c => c.id);
+      this.filteredApis = this.apiData.filter(api => activeCategory.includes(api.categoryId));
     } else {
-      this.apisFiltradas = this.dadosApi; // Se nenhuma categoria estiver ativa, mostra todas
+      this.filteredApis = this.apiData; // Se nenhuma category estiver ativa, mostra todas
     }
   }
 
-  getCategoriaNome(apiCategoryId: number): string {
-    const categoria = this.categorias.find(c => c.id === apiCategoryId);
-    return categoria ? categoria.name : 'Categoria Desconhecida';
+  getcategoryNome(apiCategoryId: number): string {
+    const category = this.categories.find(c => c.id === apiCategoryId);
+    return category ? category.name : 'category Desconhecida';
   }
 }

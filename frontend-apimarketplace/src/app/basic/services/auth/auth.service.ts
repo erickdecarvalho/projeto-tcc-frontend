@@ -29,7 +29,11 @@ export class AuthService {
         const tokenLength = res.headers.get(AUTH_HEADER)?.length;
         const bearerToken = res.headers.get(AUTH_HEADER)?.substring(7, tokenLength);
         console.log(bearerToken);
-        this.userStorageService.saveToken(bearerToken);
+        if (bearerToken) {
+          this.userStorageService.saveToken(bearerToken);
+        } else {
+          console.error('Bearer token is undefined');
+        }
         return res;
       })
     );

@@ -4,19 +4,19 @@ import { HttpClientModule } from '@angular/common/http'; // Importando HttpClien
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './basic/components/home/home.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ApisComponent } from 'src/app/basic/components/apis/apis.component';
+import { HomeComponent } from 'src/app/basic/components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ApisComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

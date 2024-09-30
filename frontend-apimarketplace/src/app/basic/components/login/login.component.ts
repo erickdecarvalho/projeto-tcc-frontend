@@ -31,7 +31,7 @@ export class LoginComponent {
     this.authService.login(this.validateForm.get(['email'])!.value, this.validateForm.get(['password'])!.value)
     .subscribe(res => {
       console.log(res);
-      if (UserStorageService.isConsumerLoggedIn) {
+      if (UserStorageService.isConsumerLoggedIn()) {
         this.router.navigateByUrl("consumidor/home")
       }
     }, error => {

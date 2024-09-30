@@ -142,7 +142,7 @@
           "id": "d75db1f4-3058-45b3-b633-12e5c7a26aa1",
           "categoryId": 8,
           "name": "Clube do Livro",
-          "description": "Uma comunidade de leitores para discutir livros que marcaram nossas vidas e descobrir novos autores."
+          "description": "Uma comunidade de leitores para discutir livros que marcaram nossas vidas e descobrir novos authores."
       },
       {
           "id": "fae03d69-dcba-41e0-bb24-4b56f295f46f",
@@ -219,7 +219,7 @@
       {
           "id": "7cc3fbee-f0cc-4e36-b54b-4eecaa5d569e",
           "categoryId": 11,
-          "name": "Culinária de Autor",
+          "name": "Culinária de author",
           "description": "Receitas criativas de chefs renomados que trazem um toque especial à sua cozinha."
       }
   ]
