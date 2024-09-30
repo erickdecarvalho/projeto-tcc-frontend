@@ -10,32 +10,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <body>
-    <header>
-        <nav class="nav-bar">
-            <img src="../../assets/logo-white.png" alt="Logo do site">
-            <ul class="nav-links">
-                <li><a href="">Início</a></li>
-                <li><a href="">APIS</a></li>
-                <li><a href="">Categorias</a></li>
-                <li>
-                    <svg style="margin-right: 6px" xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                        fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path
-                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.85-3.85zm-5.742 1.656a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z" />
-                    </svg>
-                    <a href="">Pesquisar</a>
-                </li>
-            </ul>
-            <div class="nav-botoes">
-                <button onclick="window.location.href='/login'">Entrar</button>
-                <button onclick="window.location.href='/cadastro'">Cadastrar</button>
-            </div>
-        </nav>
-    </header>
-
-    <!--Conteúdo Principal-->
     <main>
-        <!-- Carrossel -->
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -51,7 +26,7 @@
                         alt="Slide 1">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://via.placeholder.com/800x400/000000/FFFFFF/?text=Slide+2" class="d-block w-100"
+                    <img src="https://img.olx.com.br/images/93/931418787007851.webp" class="d-block w-100"
                         alt="Slide 2">
                 </div>
                 <div class="carousel-item">
@@ -72,52 +47,45 @@
         </div>
 
         <div class="container-abas">
-            <div *ngIf="categorias.length > 0; else loading">
-                <div *ngFor="let categoria of categorias; let i = index" class="abas"
-                    [class.active]="categoria['ativa']" (click)="onAbaClick(i)">
-                    <img [src]="categoria.icon || ''" alt="ícone">
-                    <label>{{ categoria.name }}</label>
+            <div *ngIf="categories.length > 0; else loading">
+                <div *ngFor="let category of categories; let i = index" class="abas"
+                    [class.active]="category['ativa']" (click)="onAbaClick(i)">
+                    <img [src]="category.icon || ''" alt="ícone">
+                    <label>{{ category.name }}</label>
                 </div>
             </div>
             <ng-template #loading>
-                <p>Carregando categorias...</p>
+                <p>Loading categories...</p>
             </ng-template>
         </div>
 
         <section class="card-section">
-            <div *ngIf="apisFiltradas.length > 0; else loadingApi" class="api-cards-container">
-                <div *ngFor="let api of apisFiltradas" class="api-card">
+            <div *ngIf="filteredApis.length > 0; else loadingApi" class="api-cards-container">
+                <a *ngFor="let api of filteredApis" class="api-card" href="">
                     <div class="header">
                         <img [src]="api.icon || 'https://via.placeholder.com/40'" alt="API Icon" class="icon">
                         <div class="content">
-                            <span class="categoria-api">
-                                {{ getCategoriaNome(api.categoryId) }}
+                            <span class="category-api">
+                                {{ getcategoryNome(api.categoryId) }}
                             </span>
                             <div class="title">{{ api.name }}</div>
                         </div>
                     </div>
-                    <div class="descriçao">
+                    <div class="description">
                         {{ api.description }}
                     </div>
-                    <div class="autor">
+                    <div class="author">
                         <img src="https://via.placeholder.com/24" alt="logo">
                         <span>By {{ api.provider || '?' }}</span>
                     </div>
-                </div>
+                </a>
             </div>
             <ng-template #loadingApi>
-                <p>Carregando APIs...</p>
+                <p>Loading APIs...</p>
             </ng-template>
         </section>
 
     </main>
-
-    <footer>
-        <div>
-            <a href="#">Ajuda</a> | <a href="#">Condições de Uso</a> | <a href="#">Política de privacidade</a> | <a
-                href="#">Sobre Nós</a>
-        </div>
-    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
