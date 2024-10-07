@@ -32,7 +32,8 @@
         <section class="api-list-section">
             <h2>All Results ({{ filteredApis.length }})</h2>
             <div class="search-bar">
-                <input type="text" class="form-control" placeholder="Search (example: Game, Character, Sports)" (input)="onSearchChange($event)">
+                <input type="text" class="form-control" placeholder="Search (example: Game, Character, Sports)"
+                    (input)="onSearchChange($event)">
             </div>
             <div *ngIf="filteredApis.length > 0; else noApiFound" class="api-cards-container">
                 <a *ngFor="let api of filteredApis" class="api-card" href="">
