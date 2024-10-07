@@ -1,4 +1,12 @@
 /* Estilos para o header */
+html, body {    
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #0B0D13;
+}
+
 nav {
     display: flex;
     justify-content: space-between;
@@ -20,6 +28,7 @@ nav {
     width: 100%;
     z-index: 1000; /* Garante que a nav-bar fique acima de outros elementos */
 }
+
 .nav-bar img {
     height: 55px;
 }
@@ -28,6 +37,7 @@ nav {
     display: flex;
     align-items: center;
     margin-left: 2%;
+    margin-bottom: 0;
 }
 
 .nav-links li {
@@ -117,6 +127,10 @@ nav {
     background-color: #0056b3;
 }
 
+router-outlet {
+    flex: 1; /* Faz com que o conteúdo ocupe o espaço disponível */
+}
+
 /*                       ///////////////////////////                         */
 /* Footer */
 footer {
@@ -124,7 +138,10 @@ footer {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #080E12;
+    background-color: #0B0D13;
+    color: #fff;
+    flex-shrink: 0; /* Evita que o footer encolha */
+    bottom: 0;
 }
 
 footer a {
