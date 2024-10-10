@@ -31,4 +31,8 @@ export class RegisterComponent {
         this.router.navigateByUrl("/login")
       })
     }
+
+    registerProvider(){
+      this.router.navigateByUrl('/register-provider');
+    }
 }

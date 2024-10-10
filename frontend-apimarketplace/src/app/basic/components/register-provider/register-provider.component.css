@@ -98,24 +98,6 @@ button[type="submit"]:hover {
   /* Cor ao passar o mouse */
 }
 
-button[type="button"] {
-  background-color: #03d3fc;
-  border: none;
-  color: #000;
-  padding: 0.75rem;
-  width: 100%;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-  font-weight: bold;
-}
-
-button[type="button"]:hover {
-  background-color: #028099;
-  /* Cor ao passar o mouse */
-}
-
 footer {
   margin-top: 2rem;
   text-align: center;
@@ -263,8 +245,4 @@ input:focus~.highlight {
     width: 0;
     background: transparent;
   }
-}
-
-.marginTop {
-  margin-top: 20px;
 }

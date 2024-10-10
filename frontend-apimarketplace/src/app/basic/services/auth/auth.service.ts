@@ -20,6 +20,10 @@ export class AuthService {
     return this.http.post(BASIC_URL + "consumidores/registrar", signupConsumerRequestDto);
   }
 
+  registerProvider(singupProviderRequestDto: any): Observable<any>{
+    return this.http.post(BASIC_URL + '/provedores/registrar', singupProviderRequestDto);
+  }
+
   login(email: String, password: String) {
     return this.http.post(BASIC_URL + "authenticate", { email, password }, { observe: 'response' })
     .pipe(

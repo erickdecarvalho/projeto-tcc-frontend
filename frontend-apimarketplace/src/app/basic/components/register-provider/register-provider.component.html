@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./register.component.css">
+    <link rel="stylesheet" href="./register-provider.component.css">
     <title>Login</title>
 </head>
 
 <body>
     <main>
         <div class="register-container">
-            <h1>Register</h1>
+            <h1>Register as Provider</h1>
             <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
               <div class="group">
                   <input type="text" formControlName="username" id="username" name="username" required>
@@ -34,15 +34,21 @@
                   <label>Senha</label>
               </div>
 
+              <div class="group">
+                  <input type="text" formControlName="organizationName" id="organizationName" name="organizationName" required>
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label for="organizationName">Nome da Empresa</label>
+              </div>
+
               <button type="submit">Cadastrar</button>
-            </form>
-            <button class="marginTop" (click)="registerProvider()" type="button">Register as Provider</button>
+          </form>
         </div>
     </main>
 
     <footer>
         <div>
-            <a href="#">Help</a> | <a href="#">Terms of Use</a> | Privacy Policies | Cookies
+            <a href="#">Help</a> | <a href="#">Terms of Use</a> | <a href="#">Privacy Policies</a> | <a href="#">Cookies</a>
         </div>
     </footer>
 </body>
