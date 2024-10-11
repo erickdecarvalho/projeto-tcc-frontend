@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import 'bootstrap';
 import { Router } from '@angular/router';
 import { UserStorageService } from '../../services/storage/user-storage.service';
+import { ApiService } from '../../services/api/api.service';
 
 declare var bootstrap: any;
 
@@ -16,17 +17,25 @@ export class ApisComponent implements OnInit, AfterViewInit {
   apiData: any[] = [];
   filteredApis: any[] = []; // Para armazenar as APIs filtradas
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private apiService: ApiService) {}
 
   isConsumerLoggedIn: boolean = UserStorageService.isConsumerLoggedIn();
 
   usuarioLogado = false;
 
+  getAllApis() {
+    this.apiService.getAllApis().subscribe(res=> {
+      this.apiData = res;
+    });
+  }
+
   ngOnInit(): void {
     this.router.events.subscribe(event => {
       this.isConsumerLoggedIn = UserStorageService.isConsumerLoggedIn();
     });
+    this.getAllApis();
     this.loadCategories();
+    console.log(this.apiData);
   }
 
   ngAfterViewInit(): void {
@@ -44,7 +53,7 @@ export class ApisComponent implements OnInit, AfterViewInit {
       .subscribe(
         (data) => {
           this.categories = data.categories;
-          this.apiData = data.apiData;
+        //  this.apiData = data.apiData;
           this.filteredApis = this.apiData; // Exibir todas as APIs inicialmente
         },
         (error) => {

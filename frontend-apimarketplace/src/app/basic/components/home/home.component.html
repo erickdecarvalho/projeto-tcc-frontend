@@ -60,13 +60,13 @@
         </div>
 
         <section class="card-section">
-            <div *ngIf="filteredApis.length > 0; else loadingApi" class="api-cards-container">
-                <a *ngFor="let api of filteredApis" class="api-card" href="">
+            <div class="api-cards-container">
+                <a *ngFor="let api of apiData" class="api-card" href="">
                     <div class="header">
                         <img [src]="api.icon || 'https://via.placeholder.com/40'" alt="API Icon" class="icon">
                         <div class="content">
                             <span class="category-api">
-                                {{ getcategoryNome(api.categoryId) }}
+                                {{ api.category }}
                             </span>
                             <div class="title">{{ api.name }}</div>
                         </div>

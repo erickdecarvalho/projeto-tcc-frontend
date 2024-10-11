@@ -13,12 +13,14 @@ export class AppComponent {
   title = 'frontend-apimarketplace';
 
   isConsumerLoggedIn: boolean = UserStorageService.isConsumerLoggedIn();
+  isProviderLoggedIn: boolean = UserStorageService.isProviderLoggedIn();
 
   constructor(private router: Router) {}
 
   ngOnInit() {
     this.router.events.subscribe(event => {
       this.isConsumerLoggedIn = UserStorageService.isConsumerLoggedIn();
+      this.isProviderLoggedIn = UserStorageService.isProviderLoggedIn();
     })
   }
 

@@ -42,6 +42,13 @@ export class UserStorageService {
     const role: string = this.getUserRole();
     return role == 'CONSUMER';
   }
+  static isProviderLoggedIn(): boolean {
+    if (this.getToken() === null) {
+      return false;
+    }
+    const role: string = this.getUserRole();
+    return role == 'PROVIDER';
+  }
   static signOut(): void {
     window.localStorage.removeItem(TOKEN);
     window.localStorage.removeItem(USER);

@@ -16,30 +16,26 @@
         </div>
 
         <section class="my-cards">
-            <div *ngIf="userApis.length > 0; else loadingApi" class="api-cards-container">
-                <a *ngFor="let api of userApis" class="api-card" href="">
-                    <div class="header">
-                        <img [src]="api.icon || 'https://via.placeholder.com/40'" alt="API Icon" class="icon">
-                        <div class="content">
-                            <span class="category-api">
-                                {{ getCategoryName(api.categoryId) }}
-                            </span>
-                            <div class="title">{{ api.name }}</div>
-                        </div>
-                    </div>
-                    <div class="description">
-                        {{ api.description }}
-                    </div>
-                    <div class="author">
-                        <img src="https://via.placeholder.com/24" alt="logo">
-                        <span> By {{ api.provider || '?' }}</span>
-                    </div>
-                </a>
-            </div>
-            <ng-template #loadingApi>
-                <p>Loading APIs...</p>
-            </ng-template>
-        </section>
+          <div *ngIf="userApis.length > 0; else loadingApi" class="api-cards-container">
+              <a *ngFor="let api of userApis" class="api-card" href="">
+                  <div class="header">
+                      <img [src]="api.icon || 'https://via.placeholder.com/40'" alt="API Icon" class="icon">
+                      <div class="content">
+                          <span class="category-api">
+                              {{ getCategoryName(api.categoryId) }}
+                          </span>
+                          <div class="title">{{ api.name }}</div>
+                      </div>
+                  </div>
+                  <div class="description">
+                      {{ api.description }}
+                  </div>
+              </a>
+          </div>
+          <ng-template #loadingApi>
+              <p>Loading APIs...</p>
+          </ng-template>
+      </section>
     </main>
 
     <!-- Popup de Adicionar API Project -->
