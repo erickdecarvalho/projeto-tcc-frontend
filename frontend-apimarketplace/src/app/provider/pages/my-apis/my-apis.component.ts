@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { ProviderService } from '../../services/provider.service';
 
 @Component({
   selector: 'app-my-apis',
@@ -14,25 +17,34 @@ export class MyApisComponent implements OnInit {
   showAddProjectPopup: boolean = false; // Controle para exibir ou não o popup
   newApi: any = { name: '', description: '', categoryId: '' }; // Dados do novo API
 
-  constructor(private http: HttpClient) {}
+  validateForm!: FormGroup;
+
+  constructor(private http: HttpClient,
+    private fb: FormBuilder,
+    private router: Router,
+    private providerService: ProviderService) {}
 
   ngOnInit(): void {
     this.loadUserApis();
+
+    this.validateForm = this.fb.group({
+      categoryId: [null, [Validators.required]],
+      name: [null, [Validators.required]],
+      description: [null, [Validators.required]],
+    })
   }
 
   loadUserApis(): void {
-    this.http.get<any>('./assets/db.json')
-      .subscribe(
-        (data: any) => {
-          this.apiData = data.apiData;
-          this.categories = data.categories;
-          const loggedUserId = this.getLoggedUserId();
-          this.userApis = this.apiData.filter(api => api.ownerId === loggedUserId);
-        },
-        (error: any) => {
-          console.error('Error loading APIs', error);
-        }
-      );
+    this.providerService.getAllApisByUserId().subscribe(
+      (data: any) => {
+        console.log('Data received:', data);  // Verifica se os dados estão corretos
+        this.userApis = data || [];  // Já que o retorno é um array diretamente
+        console.log('User APIs:', this.userApis);  // Verifique se 'userApis' está sendo populado corretamente
+      },
+      (error: any) => {
+        console.error('Error loading APIs', error);
+      }
+    );
   }
 
   getLoggedUserId(): number {
@@ -57,15 +69,22 @@ export class MyApisComponent implements OnInit {
       const newApiProject = {
         name: this.newApi.name,
         description: this.newApi.description,
-        categoryId: this.newApi.categoryId,
-        ownerId: this.getLoggedUserId() // Simulando dono logado
+        categoryId: 12,
       };
 
       this.userApis.push(newApiProject); // Adicionando o novo projeto à lista
+
+      this.providerService.postApi(newApiProject).subscribe(res => {
+        alert("cadastrado!");
+      }, error => {
+        alert("Deu erro");
+      });
+
       this.closePopup(); // Fechar o popup após adicionar
       this.newApi = { name: '', description: '', categoryId: '' }; // Limpar o formulário
     } else {
       alert('Please fill all the fields');
     }
   }
+
 }

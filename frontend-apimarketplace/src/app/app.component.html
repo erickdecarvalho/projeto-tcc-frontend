@@ -35,7 +35,7 @@
             </ul>
 
             <!-- Seção para usuário logado -->
-            <div *ngIf="isConsumerLoggedIn" class="nav-icons">
+            <div *ngIf="isConsumerLoggedIn || isProviderLoggedIn" class="nav-icons">
                 <!-- Ícone de Favoritar -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-bell"
                     viewBox="0 0 16 16">
@@ -79,7 +79,7 @@
             </div>
 
             <!-- Seção de Login/Registro caso não esteja logado -->
-            <div *ngIf="!isConsumerLoggedIn" class="nav-buttons">
+            <div *ngIf="!isConsumerLoggedIn && !isProviderLoggedIn" class="nav-buttons">
                 <button onclick="window.location.href='/login'">Login</button>
                 <button onclick="window.location.href='/register'">Register</button>
             </div>

@@ -1,8 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import 'bootstrap';
-import { UserStorageService } from '../../services/storage/user-storage.service';
 import { Router } from '@angular/router';
+import { UserStorageService } from '../../services/storage/user-storage.service';
+import { ApiService } from '../../services/api/api.service';
 
 declare var bootstrap: any;
 
@@ -19,14 +20,21 @@ export class HomeComponent implements OnInit, AfterViewInit {
   usuarioLogado = false;
   isConsumerLoggedIn: boolean = false;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private apiService: ApiService) {}
+
+  getAllApis() {
+    this.apiService.getAllApis().subscribe(res=> {
+      this.apiData = res;
+    });
+  }
 
   ngOnInit(): void {
-    console.log(this.isConsumerLoggedIn);
     this.loadCategories();
     this.router.events.subscribe(event => {
       this.isConsumerLoggedIn = UserStorageService.isConsumerLoggedIn();
     })
+
+    this.getAllApis();
   }
 
   ngAfterViewInit(): void {
@@ -44,7 +52,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       .subscribe(
         (data) => {
           this.categories = data.categories;
-          this.apiData = data.apiData;
+        //  this.apiData = data.apiData;
           this.filteredApis = this.apiData; // Exibir todas as APIs inicialmente
         },
         (error) => {

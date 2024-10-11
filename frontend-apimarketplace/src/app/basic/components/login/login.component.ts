@@ -33,6 +33,8 @@ export class LoginComponent {
       console.log(res);
       if (UserStorageService.isConsumerLoggedIn()) {
         this.router.navigateByUrl("consumidor/home")
+      } else if (UserStorageService.isProviderLoggedIn()) {
+        this.router.navigateByUrl('provedor/my-apis');
       }
     }, error => {
       alert("Dados incorretos!");
