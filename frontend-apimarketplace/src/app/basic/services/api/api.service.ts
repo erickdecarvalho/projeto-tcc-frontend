@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs'
 import { UserStorageService } from 'src/app/basic/services/storage/user-storage.service';
 
-const BASIC_URL = "http://localhost:8080/";
+const BASIC_URL = "http://localhost:8080/"
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,12 @@ export class ApiService {
   getAllApis(): Observable<any> {
     return this.http.get(BASIC_URL + 'apis', {
       headers: this.createAuthorizationHeader()
+    })
+  }
+
+  getApiById(apiId: string): Observable<any> {
+    return this.http.get(BASIC_URL + `apis/${apiId}`, {
+      headers : this.createAuthorizationHeader()
     })
   }
 

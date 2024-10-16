@@ -13,23 +13,23 @@
         <div class="login-container">
             <h1>Login</h1>
             <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-              <div class="group">
-                  <input type="text" formControlName="email" id="email" name="email" required>
-                  <span class="highlight"></span>
-                  <span class="bar"></span>
-                  <label for="email">Email</label>
-              </div>
+                <div class="group">      
+                    <input type="text" id="username" formControlName="email" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="username">Email</label>
+                </div>
+                    
+                <div class="group">      
+                    <input type="password" id="password" formControlName="password" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Password</label>
+                </div>
 
-              <div class="group">
-                <input type="password"  formControlName="password" id="password" name="password" required>
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Senha</label>
-              </div>
-
-            <button type="submit">Entrar</button>
-            <a href="" class="forgot-password">Esqueceu sua senha?</a>
-        </form>
+                <button type="submit" [disabled]="!validateForm.valid">Login</button>
+                <a href="" class="forgot-password">Forgot password?</a>
+            </form>
         </div>
     </main>
 

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { ProviderRoutingModule } from './provider-routing.module';
 import { ProviderComponent } from './provider.component';
@@ -17,8 +17,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
   imports: [
     CommonModule,
     ProviderRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
+    FormsModule
   ]
 })
 export class ProviderModule { }

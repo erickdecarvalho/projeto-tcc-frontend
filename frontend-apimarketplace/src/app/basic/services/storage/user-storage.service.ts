@@ -28,6 +28,13 @@ export class UserStorageService {
     }
     return user.userId;
   }
+  static getUserEmail(): string {
+    const user = this.getUser();
+    if (user === null) {
+      return '';
+    }
+    return user.useremail;
+  }
   static getUserRole(): string {
     const user = this.getUser();
     if (user === null) {

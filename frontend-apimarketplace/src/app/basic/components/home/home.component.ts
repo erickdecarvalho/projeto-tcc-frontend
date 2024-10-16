@@ -1,8 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import 'bootstrap';
-import { Router } from '@angular/router';
 import { UserStorageService } from '../../services/storage/user-storage.service';
+import { Router } from '@angular/router';
 import { ApiService } from '../../services/api/api.service';
 
 declare var bootstrap: any;
@@ -22,19 +22,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   constructor(private http: HttpClient, private router: Router, private apiService: ApiService) {}
 
-  getAllApis() {
-    this.apiService.getAllApis().subscribe(res=> {
-      this.apiData = res;
-    });
-  }
-
   ngOnInit(): void {
     this.loadCategories();
     this.router.events.subscribe(event => {
       this.isConsumerLoggedIn = UserStorageService.isConsumerLoggedIn();
     })
 
-    this.getAllApis();
+    this.loadCategories();
+    this.apiData = []; // Inicializa como um array vazio para evitar 'undefined'
+    this.filteredApis = []; // Inicializa como um array vazio
+    this.loadApis();
   }
 
   ngAfterViewInit(): void {
@@ -52,13 +49,28 @@ export class HomeComponent implements OnInit, AfterViewInit {
       .subscribe(
         (data) => {
           this.categories = data.categories;
-        //  this.apiData = data.apiData;
-          this.filteredApis = this.apiData; // Exibir todas as APIs inicialmente
         },
         (error) => {
           console.error('Error loading categories', error);
         }
       );
+  }
+
+  loadApis(): void {
+    this.apiService.getAllApis().subscribe(
+      (data: any) => {
+        this.apiData = data;
+        this.filteredApis = data || [];
+
+        console.log(this.apiData);
+        console.log(this.filteredApis);
+      },
+      (error: any) => {
+        console.error('Error loading APIs', error);
+      }
+    );
+
+
   }
 
   onAbaClick(index: number): void {
@@ -70,7 +82,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     // Filtra as APIs com base na category ativa
     if (this.categories.some(c => c.ativa)) {
       const activeCategory = this.categories.filter(c => c.ativa).map(c => c.id);
-      this.filteredApis = this.apiData.filter(api => activeCategory.includes(api.categoryId));
+      this.filteredApis = this.apiData.filter(api => activeCategory.includes(api.category));
     } else {
       this.filteredApis = this.apiData; // Se nenhuma category estiver ativa, mostra todas
     }

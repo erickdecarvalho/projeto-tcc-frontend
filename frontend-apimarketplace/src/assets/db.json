@@ -1,226 +1,44 @@
 {
-  "categories": [
-      {
-          "id": 2,
-          "name": "Sports"
-      },
-      {
-          "id": 3,
-          "name": "Finance"
-      },
-      {
-          "id": 4,
-          "name": "Weather"
-      },
-      {
-          "id": 5,
-          "name": "Movies"
-      },
-      {
-          "id": 6,
-          "name": "Entertainment"
-      },
-      {
-          "id": 7,
-          "name": "Music"
-      },
-      {
-          "id": 8,
-          "name": "Books"
-      },
-      {
-          "id": 9,
-          "name": "Science"
-      },
-      {
-          "id": 10,
-          "name": "Travel"
-      },
-      {
-          "id": 11,
-          "name": "Food"
-      }
-  ],
-  "apiData": [
-      {
-          "id": "e6b7f6a2-8c5b-4b2d-b689-8d689b487bcd",
-          "categoryId": 2,
-          "name": "Esporte Radicais",
-          "description": "Descubra os limites do seu corpo com aventuras emocionantes como escalada, bungee jumping e muito mais!"
-      },
-      {
-          "id": "abf3c2d8-8b69-4e74-b2b3-31f22c758f1b",
-          "categoryId": 3,
-          "name": "Investimentos Inteligentes",
-          "description": "Dicas e estratégias para multiplicar seu patrimônio e garantir um futuro financeiro seguro."
-      },
-      {
-          "id": "f8cb7a9f-9e9e-41d0-873e-0f51eae7f2a3",
-          "categoryId": 4,
-          "name": "Previsões do Tempo Inusitadas",
-          "description": "Explore previsões meteorológicas e descubra curiosidades sobre como o clima afeta nossa vida cotidiana."
-      },
-      {
-          "id": "7f5c473c-6e57-45a7-8d60-19e35c32d54f",
-          "categoryId": 5,
-          "name": "Clássicos do Cinema",
-          "description": "Reviva os filmes que marcaram época e entenda por que eles continuam a inspirar gerações."
-      },
-      {
-          "id": "c9b635c5-1c9b-4ef6-8e35-754a004de814",
-          "categoryId": 6,
-          "name": "Mundo do Entretenimento",
-          "description": "Fique por dentro das últimas novidades sobre shows, séries e tudo que agita o mundo da diversão."
-      },
-      {
-          "id": "c1c2eb91-b1f2-4912-97a8-1d1a1c6f3d92",
-          "categoryId": 7,
-          "name": "Melodias do Coração",
-          "description": "Uma jornada musical pelos ritmos que tocam nossa alma, desde clássicos até novas descobertas."
-      },
-      {
-          "id": "5a6232e2-f7d8-4974-9056-7ab90b7e6b9f",
-          "categoryId": 8,
-          "name": "Literatura Fantástica",
-          "description": "Mergulhe em histórias que desafiam a imaginação e explore mundos além do comum."
-      },
-      {
-          "id": "db7c161c-146e-43ed-bfe8-0c97e7a07c64",
-          "categoryId": 9,
-          "name": "Ciência para Todos",
-          "description": "Desmistifique conceitos científicos e descubra como a ciência está presente em nosso dia a dia."
-      },
-      {
-          "id": "0b7d8d7f-58c5-4533-832c-0e2a8eede2bc",
-          "categoryId": 10,
-          "name": "Aventuras pelo Mundo",
-          "description": "Explore destinos exóticos e descubra dicas de viagem que tornam cada experiência única."
-      },
-      {
-          "id": "9fa1e3c1-7203-4c6d-9ff0-56b81f95de8f",
-          "categoryId": 11,
-          "name": "Sabores do Mundo",
-          "description": "Uma viagem gastronômica pelos pratos que encantam paladares ao redor do globo."
-      },
-      {
-          "id": "41a8bdb0-1e97-4b49-b58e-28c440e5b39d",
-          "categoryId": 2,
-          "name": "Esportes de Aventura",
-          "description": "Experimente a adrenalina do surf, parapente e rafting em lugares deslumbrantes."
-      },
-      {
-          "id": "e6dbe440-128f-4697-88b1-2a98811b35a3",
-          "categoryId": 3,
-          "name": "Descomplicando a Economia",
-          "description": "Aprenda como a economia global impacta suas finanças e descubra dicas práticas para gerenciar seu dinheiro."
-      },
-      {
-          "id": "bcbecba4-d7b7-4b66-bad8-7bfb826b53f2",
-          "categoryId": 4,
-          "name": "Clima e Sustentabilidade",
-          "description": "Entenda como as mudanças climáticas afetam nosso planeta e como podemos fazer a diferença."
-      },
-      {
-          "id": "fc8d1589-2f36-44fc-bf04-0fd807f45f8d",
-          "categoryId": 5,
-          "name": "Cinema de Culto",
-          "description": "Descubra filmes que se tornaram ícones de adoração e seu impacto na cultura pop."
-      },
-      {
-          "id": "f4ef90b1-086f-485f-80c8-c234b2f2b1c0",
-          "categoryId": 6,
-          "name": "Novidades do Streaming",
-          "description": "As últimas estreias, críticas e recomendações para você maratonar no conforto de casa."
-      },
-      {
-          "id": "c98eb77c-4912-46c8-b16c-78aa6e7b0e79",
-          "categoryId": 7,
-          "name": "Trilhas Sonoras Inesquecíveis",
-          "description": "Explore as trilhas sonoras que transformaram filmes e séries em experiências emocionais."
-      },
-      {
-          "id": "d75db1f4-3058-45b3-b633-12e5c7a26aa1",
-          "categoryId": 8,
-          "name": "Clube do Livro",
-          "description": "Uma comunidade de leitores para discutir livros que marcaram nossas vidas e descobrir novos authores."
-      },
-      {
-          "id": "fae03d69-dcba-41e0-bb24-4b56f295f46f",
-          "categoryId": 9,
-          "name": "Ciência e Inovação",
-          "description": "Explore as mais recentes inovações científicas e como elas moldam nosso futuro."
-      },
-      {
-          "id": "9a2d095e-04b3-44cf-9eb2-b81a7e3eb715",
-          "categoryId": 10,
-          "name": "Roteiros de Viagem",
-          "description": "Sugestões de roteiros incríveis para você aproveitar ao máximo suas férias."
-      },
-      {
-          "id": "d2078e62-cbcd-4a2c-804f-faa704ce8d79",
-          "categoryId": 11,
-          "name": "Receitas do Mundo",
-          "description": "Aprenda a preparar pratos tradicionais de diferentes culturas, do Brasil à Ásia."
-      },
-      {
-          "id": "f42b49c0-dbd6-497f-93d7-0f78b1df1f76",
-          "categoryId": 2,
-          "name": "Cultura do Esporte",
-          "description": "Entenda como os esportes moldam sociedades e promovem a inclusão e a diversidade."
-      },
-      {
-          "id": "c372a0e4-cb71-4382-b6bb-e90e8fc7e1eb",
-          "categoryId": 3,
-          "name": "Finanças Pessoais Simplificadas",
-          "description": "Dicas práticas para poupar, investir e alcançar seus objetivos financeiros."
-      },
-      {
-          "id": "5aeaf075-78da-4d94-bb44-efc45b36c028",
-          "categoryId": 4,
-          "name": "Fenômenos Naturais",
-          "description": "Conheça os fenômenos climáticos mais impressionantes e como eles afetam nosso dia a dia."
-      },
-      {
-          "id": "59c6a7b8-48f7-4f57-b8e0-122c29dc2f09",
-          "categoryId": 5,
-          "name": "Séries que Marcaram Época",
-          "description": "Uma viagem por séries que se tornaram clássicas e suas influências na cultura contemporânea."
-      },
-      {
-          "id": "c09f08fc-f6b8-4b65-b17e-2d5bbce4f665",
-          "categoryId": 6,
-          "name": "A História da Música",
-          "description": "Explore como diferentes gêneros musicais evoluíram e influenciaram a sociedade."
-      },
-      {
-          "id": "29c8c37f-0a74-43cb-bfa8-ec9e9f3c9c0a",
-          "categoryId": 7,
-          "name": "Músicas do Mundo",
-          "description": "Descubra ritmos e sons de diversas culturas, expandindo seu repertório musical."
-      },
-      {
-          "id": "4fd2e7cb-3a45-4bc7-b16b-0af8b1a94e10",
-          "categoryId": 8,
-          "name": "Poesia Contemporânea",
-          "description": "Uma seleção de poetas modernos e suas obras que refletem a sociedade atual."
-      },
-      {
-          "id": "3a456db9-f7f1-4b53-baa6-682fef375fa1",
-          "categoryId": 9,
-          "name": "Ciência no Cotidiano",
-          "description": "Dicas sobre como a ciência influencia aspectos diários da vida, da saúde à tecnologia."
-      },
-      {
-          "id": "7dbcd5a7-4de6-4f66-bd34-0cbb9f42d514",
-          "categoryId": 10,
-          "name": "Destinos Exóticos",
-          "description": "Explore lugares pouco conhecidos que prometem experiências inesquecíveis."
-      },
-      {
-          "id": "7cc3fbee-f0cc-4e36-b54b-4eecaa5d569e",
-          "categoryId": 11,
-          "name": "Culinária de author",
-          "description": "Receitas criativas de chefs renomados que trazem um toque especial à sua cozinha."
-      }
-  ]
+    "categories": [
+        {
+            "id": 2,
+            "name": "Sports"
+        },
+        {
+            "id": 3,
+            "name": "Finance"
+        },
+        {
+            "id": 4,
+            "name": "Weather"
+        },
+        {
+            "id": 5,
+            "name": "Movies"
+        },
+        {
+            "id": 6,
+            "name": "Entertainment"
+        },
+        {
+            "id": 7,
+            "name": "Music"
+        },
+        {
+            "id": 8,
+            "name": "Books"
+        },
+        {
+            "id": 9,
+            "name": "Science"
+        },
+        {
+            "id": 10,
+            "name": "Travel"
+        },
+        {
+            "id": 11,
+            "name": "Food"
+        }
+    ]
 }

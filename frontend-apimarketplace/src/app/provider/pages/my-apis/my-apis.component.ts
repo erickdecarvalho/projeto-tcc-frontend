@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { ProviderService } from '../../services/provider.service';
+import { UserStorageService } from 'src/app/basic/services/storage/user-storage.service';
 
 @Component({
   selector: 'app-my-apis',
@@ -17,29 +16,29 @@ export class MyApisComponent implements OnInit {
   showAddProjectPopup: boolean = false; // Controle para exibir ou não o popup
   newApi: any = { name: '', description: '', categoryId: '' }; // Dados do novo API
 
-  validateForm!: FormGroup;
-
-  constructor(private http: HttpClient,
-    private fb: FormBuilder,
-    private router: Router,
-    private providerService: ProviderService) {}
+  constructor(private http: HttpClient, private providerService: ProviderService) {}
 
   ngOnInit(): void {
+    this.loadCategories();
     this.loadUserApis();
+  }
 
-    this.validateForm = this.fb.group({
-      categoryId: [null, [Validators.required]],
-      name: [null, [Validators.required]],
-      description: [null, [Validators.required]],
-    })
+  loadCategories(): void {
+    this.http.get<any>('./assets/db.json')
+      .subscribe(
+        (data: any) => {
+          this.categories = data.categories;
+        },
+        (error: any) => {
+          console.error('Error loading Categories', error);
+        }
+      );
   }
 
   loadUserApis(): void {
     this.providerService.getAllApisByUserId().subscribe(
       (data: any) => {
-        console.log('Data received:', data);  // Verifica se os dados estão corretos
-        this.userApis = data || [];  // Já que o retorno é um array diretamente
-        console.log('User APIs:', this.userApis);  // Verifique se 'userApis' está sendo populado corretamente
+        this.userApis = data || [];
       },
       (error: any) => {
         console.error('Error loading APIs', error);
@@ -47,12 +46,12 @@ export class MyApisComponent implements OnInit {
     );
   }
 
-  getLoggedUserId(): number {
-    return 1; // Supondo um ID de exemplo
+  getLoggedUserId(): any {
+    return UserStorageService.getUserId;
   }
 
   getCategoryName(apiCategoryId: number): string {
-    const category = this.categories.find((c: any) => c.id === apiCategoryId);
+    const category = this.categories.find((c: any) => c.id === Number(apiCategoryId));
     return category ? category.name : 'Unknown category';
   }
 
@@ -69,11 +68,13 @@ export class MyApisComponent implements OnInit {
       const newApiProject = {
         name: this.newApi.name,
         description: this.newApi.description,
-        categoryId: 12,
+        categoryId: this.newApi.categoryId,
+      //  ownerId: this.getLoggedUserId() // Simulando dono logado
       };
 
       this.userApis.push(newApiProject); // Adicionando o novo projeto à lista
 
+      console.log(newApiProject);
       this.providerService.postApi(newApiProject).subscribe(res => {
         alert("cadastrado!");
       }, error => {
@@ -86,5 +87,4 @@ export class MyApisComponent implements OnInit {
       alert('Please fill all the fields');
     }
   }
-
 }

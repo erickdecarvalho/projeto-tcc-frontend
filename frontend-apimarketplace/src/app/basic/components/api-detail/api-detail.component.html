@@ -1,0 +1,106 @@
+<body>
+    <nav class="nav-bar">
+        <ul class="nav-tabs">
+            <li class="nav-item" [ngClass]="{ 'active': activeTab === 'overview' }" (click)="selectTab('overview')">
+                <a>Overview</a>
+            </li>
+            <li class="nav-item" [ngClass]="{ 'active': activeTab === 'endpoints' }" (click)="selectTab('endpoints')">
+                <a>Endpoints</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Condição para exibir a tela Overview -->
+    <div class="container" *ngIf="apiDetails && activeTab === 'overview'">
+        <!-- Esquerda: Detalhes da API -->
+        <div class="api-details">
+            <h1>
+              <img [src]="apiDetails.icon || 'https://via.placeholder.com/40'" alt="API Icon" class="icon">
+              {{ apiDetails.name }}
+            </h1>
+            <!-- <div class="prices-container" *ngIf="apiDetails?.prices">
+                <div class="price" *ngFor="let priceKey of objectKeys(apiDetails.prices)">
+                    <p>{{ priceKey }}</p> <!-- Exibe o tipo do plano
+                    <p class="price-month">${{ apiDetails.prices[priceKey] | number: '1.2-2' }} / mo</p> <!-- Exibe o preço formatado com duas casas decimais
+                </div>
+            </div> -->
+            <h1><strong>API Overview</strong></h1>
+            <p>{{ apiDetails.description }}</p>
+        </div>
+
+        <!-- Direita: Informações do Provedor -->
+        <div class="provider-info">
+            <p><strong>Provider Info</strong></p>
+            <div style="padding: 0 15%; margin-top: 50px;">
+              <p><strong>API Creator:</strong> by {{ apiDetails.providerId?.organizationName || 'Unknown' }} </p>
+              <p><strong>Subscribers:</strong> (X) Subs</p>
+              <p><strong>Category:</strong> {{ getcategoryNome(apiDetails.category) }}</p>
+              <button class="btn">Contact Provider</button>
+              <button class="btn">Get Notifications</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Condição para exibir a tela Endpoints -->
+    <div class="ep-container" *ngIf="apiDetails && activeTab === 'endpoints'">
+        <div class="api-details">
+            <h1>
+              <img [src]="apiDetails.icon || 'https://via.placeholder.com/40'" alt="API Icon" class="icon">
+                {{ apiDetails.name }}
+            </h1>
+        </div>
+        <h1>API Endpoints</h1>
+        <ul>
+          <li class="endpoint-index" *ngFor="let endpoint of apiDetails.endpoints">
+            <strong (click)="toggleDropdown(endpoint.id)" style="cursor: pointer;">
+              {{ endpoint.name }} <span>{{ openDropdowns[endpoint.id] ? '-' : '+' }}</span>
+            </strong>
+            <div *ngIf="openDropdowns[endpoint.id]">
+              <p><strong>URL:</strong> {{ endpoint.url }}</p>
+              <p><strong>Type:</strong> {{ endpoint.type }}</p>
+              <p><strong>Description:</strong> {{ endpoint.description }}</p>
+
+              <!-- Exibir parâmetros, se houver -->
+              <div class="params-container" *ngIf="endpoint.params?.length">
+                <h3>Parameters</h3>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Example Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let param of endpoint.params">
+                      <td>{{ param.name }}</td>
+                      <td>{{ param.type }}</td>
+                      <td>
+                        <input [type]="getInputType(param)"
+                               [value]="getExampleValue(param)"
+                               disabled />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Implementação -->
+              <h3>How to make this request</h3>
+              <div class="example-container">
+                <p><strong>Curl:</strong></p>
+                <pre>{{ endpoint.example?.curl }}</pre>
+                <p><strong>JavaScript (fetch):</strong></p>
+                <pre>{{ endpoint.example?.javascript }}</pre>
+                <p><strong>Python (requests):</strong></p>
+                <pre>{{ endpoint.example?.python }}</pre>
+              </div>
+            </div>
+          </li>
+        </ul>
+    </div>
+
+    <div *ngIf="!apiDetails">
+        <p>Loading API details...</p>
+    </div>
+</body>

@@ -17,9 +17,9 @@
             <div class="filter-options">
                 <div *ngIf="categories.length > 0; else loading">
                     <div *ngFor="let category of categories" class="form-check">
-                        <input class="form-check-input" type="checkbox" [id]="category.id" [value]="category.id"
-                            (change)="onCategoryChange($event)">
-                        <label class="form-check-label" [for]="category.id">{{ category.name }}</label>
+                      <input class="form-check-input" type="checkbox" [id]="category.name" [value]="category.name"
+                      (change)="onCategoryChange($event)">
+                    <label class="form-check-label" [for]="category.name">{{ category.name }}</label>
                     </div>
                 </div>
                 <ng-template #loading>
@@ -35,14 +35,14 @@
                 <input type="text" class="form-control" placeholder="Search (example: Game, Character, Sports)"
                     (input)="onSearchChange($event)">
             </div>
-            <div class="api-cards-container">
-                <a *ngFor="let api of apiData" class="api-card" href="">
+            <div *ngIf="filteredApis && filteredApis.length > 0; else noApiFound" class="api-cards-container">
+                <a *ngFor="let api of filteredApis" class="api-card" [routerLink]="['/api', api.id]">
                     <div class="header">
                         <img [src]="api.icon || 'https://via.placeholder.com/40'" alt="API Icon" class="icon">
                         <div class="content">
-                            <span class="category-api">
-                                {{ api.category }}
-                            </span>
+                          <span class="category-api">
+                            {{ getcategoryNome(api.category) }}
+                          </span>
                             <div class="title">{{ api.name }}</div>
                         </div>
                     </div>

@@ -15,29 +15,32 @@ export class LoginComponent {
 
   validateForm!: FormGroup;
 
-  constructor(private fb: FormBuilder,
-    private authService : AuthService,
-    private router: Router) {
-  }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.validateForm = this.fb.group({
-      email: [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.email]], // Adicionando validação de email
       password: [null, [Validators.required]],
-    })
+    });
   }
 
   submitForm() {
-    this.authService.login(this.validateForm.get(['email'])!.value, this.validateForm.get(['password'])!.value)
-    .subscribe(res => {
-      console.log(res);
-      if (UserStorageService.isConsumerLoggedIn()) {
-        this.router.navigateByUrl("consumidor/home")
-      } else if (UserStorageService.isProviderLoggedIn()) {
-        this.router.navigateByUrl('provedor/my-apis');
-      }
-    }, error => {
-      alert("Dados incorretos!");
-    })
+    if (this.validateForm.valid) {
+      this.authService.login(this.validateForm.get('email')!.value, this.validateForm.get('password')!.value)
+        .subscribe(res => {
+          console.log(res);
+          if (UserStorageService.isConsumerLoggedIn()) {
+            this.router.navigateByUrl("consumidor/home");
+          }  else if (UserStorageService.isProviderLoggedIn()) {
+              this.router.navigateByUrl('provider/my-apis');
+          }
+        }, error => {
+          alert("Dados incorretos!");
+        });
+    }
   }
 }

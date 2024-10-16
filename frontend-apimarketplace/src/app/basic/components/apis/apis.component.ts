@@ -23,19 +23,14 @@ export class ApisComponent implements OnInit, AfterViewInit {
 
   usuarioLogado = false;
 
-  getAllApis() {
-    this.apiService.getAllApis().subscribe(res=> {
-      this.apiData = res;
-    });
-  }
-
   ngOnInit(): void {
     this.router.events.subscribe(event => {
       this.isConsumerLoggedIn = UserStorageService.isConsumerLoggedIn();
     });
-    this.getAllApis();
     this.loadCategories();
-    console.log(this.apiData);
+    this.apiData = []; // Inicializa como um array vazio para evitar 'undefined'
+    this.filteredApis = []; // Inicializa como um array vazio
+    this.loadApis();
   }
 
   ngAfterViewInit(): void {
@@ -53,13 +48,32 @@ export class ApisComponent implements OnInit, AfterViewInit {
       .subscribe(
         (data) => {
           this.categories = data.categories;
-        //  this.apiData = data.apiData;
-          this.filteredApis = this.apiData; // Exibir todas as APIs inicialmente
         },
         (error) => {
           console.error('Error loading categories', error);
         }
       );
+  }
+
+  loadApis(): void {
+    console.log('Carregando APIs...');
+    this.apiService.getAllApis().subscribe(
+      (data: any) => {
+        console.log('Dados da API recebidos:', data);
+        if (data && data.length > 0) {
+          this.apiData = data;
+          this.filteredApis = this.apiData;
+          console.log('API data carregado com sucesso:', this.apiData);
+        } else {
+          console.error('Nenhuma API encontrada.');
+          this.apiData = [];
+        }
+      },
+      (error) => {
+        console.error('Erro ao carregar dados da API:', error);
+        this.apiData = [];
+      }
+    );
   }
 
   onSearchChange(event: Event): void {
@@ -78,20 +92,33 @@ export class ApisComponent implements OnInit, AfterViewInit {
 
   onCategoryChange(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
-    const index = this.categories.findIndex(category => category.id === +inputElement.value);
-    if (index !== -1) {
-      const category = this.categories[index];
+    const selectedCategoryName = inputElement.value;
+    console.log('Categoria selecionada:', selectedCategoryName);
 
-      // Alterna a category ativa
-      category.ativa = !category.ativa;
+    const selectedCategory = this.categories.find(c => c.name === selectedCategoryName);
+    console.log('Categoria encontrada:', selectedCategory);
 
-      // Filtra as APIs com base na category ativa
-      if (this.categories.some(c => c.ativa)) {
-        const activeCategory = this.categories.filter(c => c.ativa).map(c => c.id);
-        this.filteredApis = this.apiData.filter(api => activeCategory.includes(api.categoryId));
-      } else {
-        this.filteredApis = this.apiData; // Se nenhuma category estiver ativa, mostra todas
-      }
+    if (!selectedCategory) {
+      console.error('Categoria não encontrada:', selectedCategoryName);
+      return;
+    }
+
+    selectedCategory.ativa = !selectedCategory.ativa;
+    console.log('Categorias ativas:', this.categories.filter(c => c.ativa));
+
+    if (!this.apiData || this.apiData.length === 0) {
+      console.error('API data não definida ou vazia. Aguarde o carregamento.');
+      return;
+    }
+
+    if (this.categories.some(c => c.ativa)) {
+      const activeCategoryIds = this.categories.filter(c => c.ativa).map(c => c.id);
+      console.log('Categorias ativas IDs:', activeCategoryIds);
+
+      this.filteredApis = this.apiData.filter(api => activeCategoryIds.includes(api.category));
+      console.log('APIs filtradas:', this.filteredApis);
+    } else {
+      this.filteredApis = this.apiData;
     }
   }
 
