@@ -12,8 +12,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
   { path: 'apis', component: ApisComponent },
-  // { path: 'consumidor', loadChildren: () => import('./consumer/consumer.module').then(m => m.ConsumerModule) }
-  {path: 'register-provider', component: RegisterProviderComponent}
+  { path: 'consumidor', loadChildren: () => import('./consumer/consumer.module').then(m => m.ConsumerModule) },
+  { path: 'register-provider', component: RegisterProviderComponent }
 ];
 
 @NgModule({
