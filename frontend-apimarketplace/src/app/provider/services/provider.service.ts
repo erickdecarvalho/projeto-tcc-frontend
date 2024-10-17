@@ -26,6 +26,37 @@ export class ProviderService {
     })
   }
 
+  addEndpointToApi(endpointId: string, endpointDTO: any): Observable<any> {
+    return this.http.post(BASIC_URL + `apis/endpoint/${endpointId}`, endpointDTO, {
+      headers : this.createAuthorizationHeader()
+    })
+  }
+
+  updateEndpointById(apiId: string, endpointDTO: any): Observable<any> {
+    return this.http.put(BASIC_URL + `apis/endpoint/${apiId}`, endpointDTO, {
+      headers : this.createAuthorizationHeader()
+    })
+  }
+
+  addParameterToEndpoint(endpointId: string, parameterDTO: any): Observable<any> {
+    return this.http.post(BASIC_URL + `apis/endpoint/${endpointId}/parameter`, parameterDTO, {
+      headers : this.createAuthorizationHeader()
+    })
+  }
+
+  deleteParameterById(parameterId: string): Observable<any> {
+  return this.http.delete(BASIC_URL + `apis/endpoint/parameter/${parameterId}`, {
+    headers : this.createAuthorizationHeader()
+  });
+  }
+
+
+  deleteEndpointById(endpointId: string): Observable<any> {
+    return this.http.delete(BASIC_URL + `apis/endpoint/${endpointId}`, {
+      headers : this.createAuthorizationHeader()
+    })
+  }
+
   createAuthorizationHeader(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders();
     return authHeaders.set(

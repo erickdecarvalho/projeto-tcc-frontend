@@ -86,7 +86,6 @@ export class ApiDetailComponent implements OnInit {
   loadApiDetails(apiId: string): void {
     this.apiService.getApiById(apiId).subscribe(
       (data: ApiData) => {
-        console.log("aqui");
         this.apiDetails = data;
 
         if (this.apiDetails.endpoints) {

@@ -1,0 +1,223 @@
+body {
+  min-height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #0B0D13;
+  color: #fff;
+  margin-top: 100px;
+  padding: 0 4%;
+}
+.nav-bar {
+  padding: 2px 0;
+  border-bottom: 1px solid #333;
+  margin-bottom: 2%;
+}
+/* Tab list */
+.nav-tabs {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border-bottom: none;
+}
+/* Each tab item */
+.nav-item {
+  margin-right: 20px;
+  position: relative;
+}
+.nav-item a {
+  text-decoration: none;
+  color: #aaa;
+  font-size: 16px;
+  padding-bottom: 5px;
+  display: block;
+}
+/* Active tab */
+.nav-item.active a {
+  color: white;
+  font-weight: bold;
+}
+.nav-item.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: #007bff;
+}
+/* Hover effect */
+.nav-item a:hover {
+  color: white;
+}
+.input-element{
+  margin-bottom: 15px;
+  p {
+      margin-bottom: 5px;
+  }
+  input, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      background-color: #1c1c1c;
+      color: #fff;
+  }
+  select {
+      padding: 0 10px;
+      background-color: #1c1c1c;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+  }
+  option {
+      background-color: #1c1c1c;
+      color: #fff;
+  }
+}
+.input-element2 {
+  p {
+      margin-bottom: 5px;
+  }
+}
+.input-checkbox {
+  height: 20px;
+  width: 5%;
+  margin-bottom: 15px;
+}
+.price-key {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.prices-div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.save-button {
+  padding: 5px 10px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.endpoint-div {
+  border: 2px solid #333;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  padding: 20px;
+  h2, h3 {
+      text-transform: capitalize;
+  }
+}
+.endpoint-head {
+  display: flex;
+  justify-content: left-between;
+  align-items: center;
+  margin-bottom: 10px;
+  button {
+      margin-left: 15px;
+      padding: 5px 10px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+  }
+}
+.parameter-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  button {
+      margin-left: 15px;
+      padding: 1px 10px;
+      color: #fff;
+      background-color: #c60000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+  }
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+.singleendpoint-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  button {
+      margin-left: 15px;
+      padding: 1px 10px;
+      color: #fff;
+      background-color: #c60000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+  }
+  border-bottom: 2px solid #333;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+.singleparameter-head {
+  display: flex;
+  justify-content: left-between;
+  align-items: center;
+  margin-bottom: 10px;
+  button {
+      margin-left: 15px;
+      padding: 5px 10px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+  }
+}
+.add-endpoint-input, .add-param-input {
+  display: flex;
+  align-items: center;
+}
+.add-endpoint-input input, .add-param-input input {
+  color: #fff;
+  margin-right: 5px;
+  margin-left: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #1c1c1c;
+  border: none;
+}
+.confirm-button, .cancel-button {
+  margin-left: 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.confirm-button {
+  background-color: #28a745; /* Verde */
+  color: white;
+}
+.cancel-button {
+  background-color: #dc3545; /* Vermelho */
+  color: white;
+}
+.remove-endpoint-button {
+  margin-left: 15px;
+  padding: 1px 10px;
+  color: #fff;
+  background-color: #c60000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}

@@ -17,7 +17,7 @@
 
         <section class="my-cards">
             <div *ngIf="userApis.length > 0; else loadingApi" class="api-cards-container">
-                <a *ngFor="let api of userApis" [routerLink]="['/api', api.id]" class="api-card">
+                <a *ngFor="let api of userApis" [routerLink]="['/provider/my-api/', api.id]" class="api-card">
                     <div class="header">
                         <img [src]="api.icon || 'https://via.placeholder.com/40'" alt="API Icon" class="icon">
                         <div class="content">
