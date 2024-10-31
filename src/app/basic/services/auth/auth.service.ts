@@ -9,33 +9,51 @@ export const AUTH_HEADER = 'authorization';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  constructor(private http: HttpClient,
-    private userStorageService: UserStorageService) { }
+  constructor(
+    private http: HttpClient,
+    private userStorageService: UserStorageService
+  ) {}
 
   registerConsumer(signupConsumerRequestDto: any): Observable<any> {
-    return this.http.post(BASIC_URL + "consumidores/registrar", signupConsumerRequestDto);
+    return this.http.post(
+      BASIC_URL + 'consumidores/registrar',
+      signupConsumerRequestDto
+    );
+  }
+
+  registerProvider(singupProviderRequestDto: any): Observable<any> {
+    return this.http.post(
+      BASIC_URL + '/provedores/registrar',
+      singupProviderRequestDto
+    );
   }
 
   login(email: String, password: String) {
-    return this.http.post(BASIC_URL + "authenticate", { email, password }, { observe: 'response' })
-    .pipe(
-      map((res: HttpResponse<any>) => {
-        console.log(res.body)
-        this.userStorageService.saveUser(res.body);
-        const tokenLength = res.headers.get(AUTH_HEADER)?.length;
-        const bearerToken = res.headers.get(AUTH_HEADER)?.substring(7, tokenLength);
-        console.log(bearerToken);
-        if (bearerToken) {
-          this.userStorageService.saveToken(bearerToken);
-        } else {
-          console.error('Bearer token is undefined');
-        }
-        return res;
-      })
-    );
+    return this.http
+      .post(
+        BASIC_URL + 'authenticate',
+        { email, password },
+        { observe: 'response' }
+      )
+      .pipe(
+        map((res: HttpResponse<any>) => {
+          console.log(res.body);
+          this.userStorageService.saveUser(res.body);
+          const tokenLength = res.headers.get(AUTH_HEADER)?.length;
+          const bearerToken = res.headers
+            .get(AUTH_HEADER)
+            ?.substring(7, tokenLength);
+          console.log(bearerToken);
+          if (bearerToken) {
+            this.userStorageService.saveToken(bearerToken);
+          } else {
+            console.error('Bearer token is undefined');
+          }
+          return res;
+        })
+      );
   }
 }

@@ -13,14 +13,14 @@
         <div class="login-container">
             <h1>Login</h1>
             <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-                <div class="group">      
+                <div class="group">
                     <input type="text" id="username" formControlName="email" required>
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label for="username">Email</label>
                 </div>
-                    
-                <div class="group">      
+
+                <div class="group">
                     <input type="password" id="password" formControlName="password" required>
                     <span class="highlight"></span>
                     <span class="bar"></span>
@@ -28,16 +28,10 @@
                 </div>
 
                 <button type="submit" [disabled]="!validateForm.valid">Login</button>
-                <a href="" class="forgot-password">Forgot password?</a>
+                <a class="forgot-password" (click)="forgotPassword()">Forgot password?</a>
             </form>
         </div>
     </main>
-
-    <footer>
-        <div>
-            <a href="#">Help</a> | <a href="#">Terms of Use</a> | Privacy Policies | Cookies
-        </div>
-    </footer>
 </body>
 
 </html>

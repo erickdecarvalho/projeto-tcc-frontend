@@ -8,27 +8,34 @@ import { AuthService } from '../../services/auth/auth.service';
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-
   validateForm!: FormGroup;
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router) {}
+    private router: Router
+  ) {}
 
-    ngOnInit() {
-      this.validateForm = this.fb.group({
-        username: [null, [Validators.required]],
-        password: [null, [Validators.required]],
-        email: [null, [Validators.email, Validators.required]],
-      })
-    }
+  ngOnInit() {
+    this.validateForm = this.fb.group({
+      username: [null, [Validators.required]],
+      password: [null, [Validators.required]],
+      email: [null, [Validators.email, Validators.required]],
+    });
+  }
 
-    submitForm() {
-      this.authService.registerConsumer(this.validateForm.value).subscribe(res => {
-        this.router.navigateByUrl("/login")
-      })
-    }
+  submitForm() {
+    this.authService
+      .registerConsumer(this.validateForm.value)
+      .subscribe((res) => {
+        this.router.navigateByUrl('/login');
+      });
+  }
+
+  registerProvider() {
+    this.router.navigateByUrl('/register-provider');
+  }
 }

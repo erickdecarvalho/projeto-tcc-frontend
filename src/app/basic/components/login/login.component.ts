@@ -9,10 +9,9 @@ import { UserStorageService } from '../../services/storage/user-storage.service'
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-
   validateForm!: FormGroup;
 
   constructor(
@@ -30,17 +29,28 @@ export class LoginComponent {
 
   submitForm() {
     if (this.validateForm.valid) {
-      this.authService.login(this.validateForm.get('email')!.value, this.validateForm.get('password')!.value)
-        .subscribe(res => {
-          console.log(res);
-          if (UserStorageService.isConsumerLoggedIn()) {
-            this.router.navigateByUrl("consumidor/home");
-          }  else if (UserStorageService.isProviderLoggedIn()) {
+      this.authService
+        .login(
+          this.validateForm.get('email')!.value,
+          this.validateForm.get('password')!.value
+        )
+        .subscribe(
+          (res) => {
+            console.log(res);
+            if (UserStorageService.isConsumerLoggedIn()) {
+              this.router.navigateByUrl('consumidor/home');
+            } else if (UserStorageService.isProviderLoggedIn()) {
               this.router.navigateByUrl('provider/my-apis');
+            }
+          },
+          (error) => {
+            alert('Dados incorretos!');
           }
-        }, error => {
-          alert("Dados incorretos!");
-        });
+        );
     }
+  }
+
+  forgotPassword() {
+    this.router.navigateByUrl('/forgot-password');
   }
 }
