@@ -1,0 +1,57 @@
+<p>register-provider works!</p>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./register-provider.component.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <main>
+        <div class="register-container">
+            <h1>Register as Provider</h1>
+            <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+              <div class="group">
+                  <input type="text" formControlName="username" id="username" name="username" required>
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label for="username">Nome</label>
+              </div>
+
+              <div class="group">
+                  <input type="text" formControlName="email" id="email" name="email" required>
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label for="email">Email</label>
+              </div>
+
+              <div class="group">
+                  <input type="password" formControlName="password" id="password" name="password" required>
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>Senha</label>
+              </div>
+
+              <div class="group">
+                  <input type="text" formControlName="organizationName" id="organizationName" name="organizationName" required>
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label for="organizationName">Nome da Empresa</label>
+              </div>
+
+              <button type="submit">Cadastrar</button>
+          </form>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            <a href="#">Help</a> | <a href="#">Terms of Use</a> | <a href="#">Privacy Policies</a> | <a href="#">Cookies</a>
+        </div>
+    </footer>
+</body>
+
+</html>

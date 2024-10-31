@@ -1,0 +1,44 @@
+{
+    "categories": [
+        {
+            "id": 2,
+            "name": "Sports"
+        },
+        {
+            "id": 3,
+            "name": "Finance"
+        },
+        {
+            "id": 4,
+            "name": "Weather"
+        },
+        {
+            "id": 5,
+            "name": "Movies"
+        },
+        {
+            "id": 6,
+            "name": "Entertainment"
+        },
+        {
+            "id": 7,
+            "name": "Music"
+        },
+        {
+            "id": 8,
+            "name": "Books"
+        },
+        {
+            "id": 9,
+            "name": "Science"
+        },
+        {
+            "id": 10,
+            "name": "Travel"
+        },
+        {
+            "id": 11,
+            "name": "Food"
+        }
+    ]
+}

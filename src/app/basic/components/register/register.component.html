@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./register.component.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <main>
+        <div class="register-container">
+            <h1>Register</h1>
+            <form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+                <div class="group">
+                    <input type="text" formControlName="username" id="username" name="username" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="username">Name</label>
+                </div>
+
+                <div class="group">
+                    <input type="text" formControlName="email" id="email" name="email" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="email">Email</label>
+                </div>
+
+                <div class="group">
+                    <input type="password" formControlName="password" id="password" name="password" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Password</label>
+                </div>
+
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            <a href="#">Help</a> | <a href="#">Terms of Use</a> | Privacy Policies | Cookies
+        </div>
+    </footer>
+</body>
+
+</html>

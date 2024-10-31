@@ -1,0 +1,67 @@
+<body>
+    <main>
+        <h1>API Marketplace</h1>
+        <div class="main-bar" style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="flex: 1;">
+                <input type="text" placeholder="&#128269; Search API Projects"
+                    style="width: 50%; border-radius: 5px; border: none; padding: 2px 10px;">
+            </div>
+            <div class="filter-bar" style="flex: 1; text-align: center;">
+                <button class="btn1">All (0)</button>
+                <button class="btn2">&#9733; Favorites (0)</button>
+            </div>
+            <div class="add-project" style="flex: 1; text-align: right;">
+                <button (click)="openPopup()">&#43; Add API Project</button> <!-- Aciona o popup -->
+            </div>
+        </div>
+
+        <section class="my-cards">
+            <div *ngIf="userApis.length > 0; else loadingApi" class="api-cards-container">
+                <a *ngFor="let api of userApis" [routerLink]="['/provider/my-api/', api.id]" class="api-card">
+                    <div class="header">
+                        <img [src]="api.icon || 'https://via.placeholder.com/40'" alt="API Icon" class="icon">
+                        <div class="content">
+                            <span class="category-api">
+                              {{ getCategoryName(api.categoryId) }}
+                            </span>
+                            <div class="title">{{ api.name }}</div>
+                        </div>
+                    </div>
+                    <div class="description">
+                        {{ api.description }}
+                    </div>
+                    <div class="author">
+                        <img src="https://via.placeholder.com/24" alt="logo">
+                        <span> By {{ api.provider || '?' }}</span>
+                    </div>
+                </a>
+            </div>
+            <ng-template #loadingApi>
+                <p>Loading APIs...</p>
+            </ng-template>
+        </section>
+    </main>
+
+    <!-- Popup de Adicionar API Project -->
+    <div class="popup-container" *ngIf="showAddProjectPopup">
+        <div class="popup-content">
+            <h2>Add API Project</h2>
+            <label for="api-name">Name</label>
+            <input type="text" id="api-name" placeholder="Enter project name" [(ngModel)]="newApi.name">
+
+            <label for="api-description">Description</label>
+            <input type="text" id="api-description" placeholder="Enter project description" [(ngModel)]="newApi.description">
+
+            <label for="api-category">Category</label>
+            <select id="api-category" [(ngModel)]="newApi.categoryId">
+                <option value="" disabled>Select a category...</option>
+                <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+            </select>
+
+            <div class="popup-actions">
+                <button (click)="addProject()">Add</button>
+                <button (click)="closePopup()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</body>
