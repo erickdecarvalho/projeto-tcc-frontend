@@ -1,0 +1,351 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    min-height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #080E12;
+    color: #fff;
+}
+
+/* Ícones */
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: auto; /* Empurra os ícones para a direita */
+}
+
+.nav-icons svg {
+    cursor: pointer;
+    color: #fff;
+}
+
+.nav-icons svg:hover {
+    color: #ccc;
+}
+
+/* Imagem do usuário */
+.user-profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid #fff;
+}
+
+.nav-bar img {
+    height: 55px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    margin-left: 2%;
+}
+
+.nav-links li {
+    list-style-type: none;
+    position: relative;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-links li::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: -5px;
+    background: #03d3fc;
+    transition: width 0.3s ease;
+}
+
+.nav-links li:hover::after {
+    width: 100%;
+}
+
+.nav-links li {
+    font-weight: bold;
+    position: relative;
+    margin-left: 40px; /* Espaçamento entre os itens da nav-bar */
+}
+
+.nav-links li:first-child {
+    margin-left: 0; /* Remove o espaçamento do primeiro item */
+}
+
+.nav-buttons {
+    margin-left: auto; /* Empurra nav-buttons para o lado direito */
+}
+
+.nav-buttons button {
+    background-color: #03d3fc;
+    border: none;
+    padding: 8px 16px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+.nav-buttons button:hover {
+    background-color: #0056b3;
+}
+
+/* Seção Hero*/
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.hero-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    filter: brightness(0.5);
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 1; /* Certificar que o texto aparece acima da imagem */
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.btn-explore {
+    background-color: #ffcc00;
+    padding: 10px 20px;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-explore:hover {
+    background-color: #ff9900;
+}
+
+/* Abas*/
+.container-abas {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem linha */
+    align-items: center;
+    justify-content: center;
+    max-width: 80%;
+    margin: 0 auto;
+    text-align: center; /* Centraliza os elementos na linha nova */
+    margin-bottom: 5%;
+    margin-top: 2%;
+}
+
+.abas {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 15px;
+    background-color: #2a2a2a;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 5px;
+}
+
+.abas img {
+    margin-right: 5px;
+    width: 27px;
+    height: 27px;
+    filter: brightness(0) saturate(100%) invert(67%) sepia(27%) saturate(489%) hue-rotate(172deg) brightness(92%) contrast(87%);
+}
+
+.abas:hover {
+    background-color: #3a3a3a;
+}
+
+.abas.active {
+    background-color: #3a3a3a;
+}
+
+.abas.active img {
+    filter: invert(0);
+}
+
+.carousel-item img {
+    max-width: 100%;
+    object-fit: fill;
+    display: block;
+    margin: 0 auto;
+}
+
+.carousel {
+    max-height: 800px; /* Defina a altura máxima desejada para o carrossel */
+    overflow: hidden;  /* Oculta qualquer conteúdo que exceda a altura */
+    position: relative; /* Necessário para posicionar o degradê */
+}
+
+.carousel::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 170px; /* Altura do degradê */
+    background: linear-gradient(to top, #080E12, transparent); /* Degradê de branco para transparente */
+}
+
+/* Adicionando responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    .aba-links li {
+        margin: 0 10px;
+    }
+
+    .aba-links a {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+}
+
+/* Cards - Catálogos*/
+.api-card {
+    flex: 1 1 calc(20% - 16px); /* Adjust the percentage to control the number of cards per row */
+    background-color: #1e1e1e; /* Tom de cinza escuro */
+    border-radius: 10px;
+    padding: 15px;
+    width: 300px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #fff; /* Texto branco */
+    box-sizing: border-box;
+    border: 1px solid rgb(80, 80, 80);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.api-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px; /* Adjust the gap between cards as needed */
+    width: 80%;
+    margin: 0 auto;
+}
+
+.api-card .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.api-card .icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+}
+
+.api-card .category-api {
+    font-size: 12px;
+    color: #000;
+    background-color: rgb(220, 220, 220);
+    border-radius: 4px;
+    padding: 2px 5px;
+}
+
+.api-card .title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.api-card .description {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #888;
+}
+
+.api-card .author {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: #888;
+}
+
+.api-card .author img {
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    border-radius: 50%;
+    margin-right: 10px;
+    filter: brightness(0) invert(1); /* Ensures icons are white */
+}
+
+.category {
+    background-color: #3a3a3a;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #ffffffa3;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.description {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #aaa;
+}
+
+.author {
+    display: flex;
+    align-items: center;
+}
+
+.author img {
+    border-radius: 50%;
+    margin-right: 10px;
+}

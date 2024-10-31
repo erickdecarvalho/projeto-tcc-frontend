@@ -1,0 +1,114 @@
+<body>
+  <nav class="nav-bar">
+      <ul class="nav-tabs">
+          <li class="nav-item" [ngClass]="{ 'active': activeTab === 'edit' }" (click)="activeTab = 'edit'">
+              <a>Edit API</a>
+          </li>
+          <li class="nav-item" [ngClass]="{ 'active': activeTab === 'endpoints' }" (click)="activeTab = 'endpoints'">
+              <a>Edit Endpoints</a>
+          </li>
+      </ul>
+  </nav>
+
+  <div class="container">
+      <!-- Coluna de Edição -->
+      <div class="edit-section">
+          <div *ngIf="apiDetails && activeTab === 'edit'">
+              <div class="input-element">
+                  <h1>Edit API</h1>
+                  <p>Name</p>
+                  <input [(ngModel)]="apiDetails.name" />
+              </div>
+              <div class="input-element">
+                  <p>Description</p>
+                  <textarea [(ngModel)]="apiDetails.description"></textarea>
+              </div>
+              <h2>Prices</h2>
+              <div class="prices-div" *ngIf="apiDetails.prices">
+                  <div class="input-element" *ngFor="let priceKey of objectKeys(apiDetails.prices)">
+                      <p class="price-key">{{ priceKey }}</p>
+                      <input type="number" [(ngModel)]="apiDetails.prices[priceKey]" />
+                  </div>
+              </div>
+
+              <div class="input-element">
+                  <p>Photo</p>
+                  <input type="file" (change)="onFileSelected($event)" />
+                  <img *ngIf="selectedFile" [src]="selectedFile" alt="Selected Image" class="preview-image"/>
+              </div>
+              <button class="save-button" (click)="updateApiDetails()">Save Changes</button>
+          </div>
+
+          <div *ngIf="apiDetails && activeTab === 'endpoints'">
+              <div class="endpoint-head">
+                  <h1>Edit Endpoints</h1>
+                  <button class="add-endpoint-button" (click)="onAddEndpointClick()">+ Endpoint</button>
+                  <div *ngIf="showEndpointInput" class="add-endpoint-input">
+                      <input [(ngModel)]="newEndpointName" placeholder="Nome do Endpoint" />
+                      <button (click)="confirmAddEndpoint()" class="confirm-button">✔️</button>
+                      <button (click)="cancelAddEndpoint()" class="cancel-button">❌</button>
+                  </div>
+              </div>
+              <div class="endpoint-div" *ngFor="let endpointKey of objectKeys(apiDetails.endpoints)">
+                  <div *ngIf="apiDetails.endpoints[endpointKey] as endpoint">
+                      <strong (click)="toggleDropdown(endpointKey)" style="cursor: pointer;">
+                          <h2>
+                              {{ endpoint.name }} <span>{{ openDropdowns[endpointKey] ? '-' : '+' }}</span>
+                          </h2>
+                      </strong>
+                      <div *ngIf="openDropdowns[endpointKey]">
+                          <div class="input-element">
+                              <p>URL</p>
+                              <input [(ngModel)]="endpoint.url" />
+                          </div>
+                          <div class="input-element">
+                              <p>Type</p>
+                              <input [(ngModel)]="endpoint.type" />
+                          </div>
+                          <div class="input-element">
+                              <p>Description</p>
+                              <textarea [(ngModel)]="endpoint.description"></textarea>
+                          </div>
+                          <div class="singleparameter-head">
+                              <h3>Parameters</h3>
+                              <button class="add-parameter-button" (click)="onAddParamClick(endpointKey)">+ Parameter</button>
+                              <div *ngIf="showParamInput" class="add-param-input">
+                                  <input [(ngModel)]="newParamName" placeholder="Nome do Parâmetro" />
+                                  <button (click)="confirmAddParam(endpointKey)" class="confirm-button">✔️</button>
+                                  <button (click)="cancelAddParam()" class="cancel-button">❌</button>
+                              </div>
+                          </div>
+                          <div *ngIf="endpoint.params">
+                            <div class="param-container" *ngFor="let param of endpoint.params; let i = index">
+                              <div class="parameter-head">
+                                <h4 class="param-title">{{ param.name }}</h4>
+                                <button class="add-endpoint-button">Remove Parameter</button>
+                              </div>
+                              <div class="input-element">
+                                <p>Type</p>
+                                <select [(ngModel)]="param.type">
+                                  <option *ngFor="let type of availableTypes" [value]="type">{{ type }}</option>
+                                </select>
+                              </div>
+                              <div class="input-element">
+                                <p>Description</p>
+                                <textarea [(ngModel)]="param.description"></textarea>
+                              </div>
+                              <div class="input-element2">
+                                <p>Optional</p>
+                                <input class='input-checkbox' type="checkbox" [(ngModel)]="param.optional" />
+                              </div>
+                            </div>
+                          </div>
+                          <button class="save-button" (click)="updateEndpointDetails(endpointKey)">Save Changes</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div *ngIf="!apiDetails">
+      <p>Loading API details...</p>
+  </div>
+</body>
